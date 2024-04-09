@@ -2,7 +2,7 @@
 This repository contains a demo integration of the Innerworks Fraud Detection Suite SDK in NextJS. It collects user metrics from a brief interaction with a login screen and sends it to us to be processed, completely under the hood and frictionlessly.
 
 To run the demo, follow these steps
-1. Get a project id from us and add it to the `.env` file as the variable `NEXT_PUBLIC_FRONTEND_FLOW_PROJECT_ID`.
+1. Get a project id from us and add it to the `.env` file as the variable `NEXT_PUBLIC_FRONTEND_FLOW_PROJECT_ID`
 2. Run `npm install` in the project root directory
 3. Run `npm run dev` to host the site on `http://localhost:3000`
 
