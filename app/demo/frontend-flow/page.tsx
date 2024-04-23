@@ -16,7 +16,7 @@ export default function FrontendFlowDemoPage() {
     import the SDK within a useEffect hook
     */
     useEffect(() => {
-        setInnerworksMetrics(new InnerworksMetrics(process.env.NEXT_PUBLIC_FRONTEND_FLOW_PROJECT_ID!));
+        setInnerworksMetrics(new InnerworksMetrics(process.env.NEXT_PUBLIC_FRONTEND_FLOW_PROJECT_ID!, '#signin-button'));
     }, [setInnerworksMetrics]);
 
     /*
@@ -111,6 +111,7 @@ export default function FrontendFlowDemoPage() {
                         />
                         <button
                             type="submit"
+                            id="signin-button"
                             className="w-full bg-black text-white py-2 px-2 border border-black hover:bg-gray-700"
                         >
                             Submit
