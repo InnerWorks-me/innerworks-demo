@@ -17,7 +17,7 @@ export default function FrontendFlowDemoPage() {
     */
     useEffect(() => {
         setInnerworksMetrics(new InnerworksMetrics(process.env.NEXT_PUBLIC_FRONTEND_FLOW_PROJECT_ID!));
-    }, []);
+    }, [setInnerworksMetrics]);
 
     /*
     This function handles form submission, i.e. the sign in button being pressed. The main
