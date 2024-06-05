@@ -1,27 +1,24 @@
-# InnerworksDemoAngular
+# Innerworks Fraud Detection Suite
+This repository contains a demo integration of the Innerworks Fraud Detection Suite SDK in Angular 16. There are two integrations in this demo, a frontend only flow which collects user metrics from a brief interaction with a login screen and sends it to us to be processed directly from the frontend. The second is an authentication flow, which sits as a wrapper over google social sign-on. As well as authenticating a user through google, user metrics are collected by the SDK on the login screen, completely under the hood and frictionlessly.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.14.
+## Frontend Flow Setup
 
-## Development server
+To run the frontend flow demo, follow these steps
+1. Get a frontend flow project id from us and add it to the `/environments/environment.ts` file as the variable `FRONTEND_FLOW_PROJECT_ID`
+2. Run `npm install` in the project root directory
+3. Run `ng serve` to host the site on `http://localhost:4200`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+To see the source code, and integration docs for the SDK, view the `/src/app/frontend-flow-demo` folder.
 
-## Code scaffolding
+## Authentication Flow Setup
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+To run the authentication flow demo, follow these steps
+1. Get an authentication flow project id from us and add it to the `/environments/environment.ts` file as the variable `AUTH_PROJECT_ID`
+2. Run `npm install` in the project root directory
+3. Run `ng serve` to host the site on `http://localhost:4200`
 
-## Build
+To see the source code, and integration docs for the SDK, view the `/src/app/auth-flow-demo` folder.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Integrations for a backend flow coming soon.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+This repo is in constant development, please feel free to point out any issues or make any suggestions by emailing tom@innerworks.me
