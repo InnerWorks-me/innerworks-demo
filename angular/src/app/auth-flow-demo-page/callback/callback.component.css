@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f9fafb;
+    text-align: center;
+  }
+  
+  .content {
+    max-width: 400px;
+    width: 100%;
+    background: white;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Ensures content is centered vertically */
+  }
+  
+  .error-message {
+    color: #ef4444;
+    font-size: 1.125rem; /* text-lg */
+    margin-bottom: 1rem; /* mb-4 */
+  }
+  
+  .success-message {
+    color: #10b981;
+    font-size: 1.125rem; /* text-lg */
+    margin-bottom: 1rem; /* mb-4 */
+  }
+  

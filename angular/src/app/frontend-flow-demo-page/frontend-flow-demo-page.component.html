@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="content">
+      <h1>Frontend Flow Demo Page</h1>
+      <div *ngIf="authSuccess" class="success-message">
+        Authentication Successful! User Metrics were sent to innerworks.
+      </div>
+      <div *ngIf="!authSuccess">
+        <p class="description">
+          This demonstrates the frontend flow, where a request sending the metrics is sent directly to innerworks 
+          from the frontend. Add a frontend flow project id to the environment variables and use the username "test-username" and 
+          password "password" to login.
+        </p>
+        <form [formGroup]="loginForm" (ngSubmit)="handleSubmit()" class="login-form">
+          <input
+            id="username"
+            formControlName="username"
+            type="text"
+            class="form-input"
+            placeholder="Enter your username"
+            required
+          />
+          <input
+            id="password"
+            formControlName="password"
+            type="password"
+            class="form-input"
+            placeholder="Enter your password"
+            required
+          />
+          <button type="submit" id="signin-button" class="submit-button">
+            Submit
+          </button>
+        </form>
+        <p class="error-message" [ngClass]="{ 'visible': authError, 'hidden': !authError }">
+          {{ authError ?? "Invalid login attempt." }}
+        </p>
+      </div>
+    </div>
+  </div>
+  

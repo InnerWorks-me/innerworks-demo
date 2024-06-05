@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="content">
+      <div *ngIf="!id" class="error-message">
+        Error: {{ error ?? "An error has occurred on our end..." }}
+      </div>
+      <div *ngIf="id && !error" class="success-message">
+        Authentication Successful!
+      </div>
+    </div>
+  </div>
+  
