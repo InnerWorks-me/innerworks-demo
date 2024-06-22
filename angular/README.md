@@ -19,6 +19,4 @@ To run the authentication flow demo, follow these steps
 
 To see the source code, and integration docs for the SDK, view the `/src/app/auth-flow-demo` folder.
 
-Integrations for a backend flow coming soon.
-
 This repo is in constant development, please feel free to point out any issues or make any suggestions by emailing tom@innerworks.me
