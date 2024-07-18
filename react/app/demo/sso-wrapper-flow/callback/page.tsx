@@ -34,8 +34,12 @@ export default function Callback() {
   async function sendInnerworksMetrics() {
     if(innerworksMetrics) {
         try {
-            await innerworksMetrics.sendFromStoredData(id);
-            setAuthSuccess(true);
+            const didSend = await innerworksMetrics.sendFromStoredData(id);
+            if (didSend) {
+              setAuthSuccess(true);
+            } else {
+              setAuthError("Failed to send metrics to innerworks");
+            }
         } catch(err) {
             setAuthError("Failed to send metrics to innerworks");
         }

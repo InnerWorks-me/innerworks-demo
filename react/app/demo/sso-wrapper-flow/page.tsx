@@ -27,7 +27,10 @@ export default function SSOWrapperFlowDemoPage() {
         // Store collected metrics in local storage before redirecting with social sign on
         if(innerworksMetrics) {
             try {
-                await innerworksMetrics.storeDataInLocalStorage();
+                const didStoreMetrics = await innerworksMetrics.storeDataInLocalStorage();
+                if (!didStoreMetrics) {
+                    setAuthError("Failed to store metrics");
+                }
             } catch(err) {
                 setAuthError("Failed to store metrics");
             }
