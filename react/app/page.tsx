@@ -12,9 +12,9 @@ export default function Home() {
             Frontend Flow Demo
           </span>
         </Link>
-        <Link href="/demo/auth-flow">
+        <Link href="/demo/sso-wrapper-flow">
           <span className="cursor-pointer block px-6 py-2 bg-blue-500 text-white border border-transparent text-center hover:bg-blue-600">
-            Authentication Flow Demo
+            Social Sign on Wrapper Flow
           </span>
         </Link>
       </div>
