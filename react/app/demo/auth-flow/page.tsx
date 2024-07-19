@@ -12,7 +12,7 @@ export default function FrontendFlowDemoPage() {
     const buttonContainerRef = useRef<HTMLDivElement>(null);
 
     /*
-    To set up the SDK, update NEXT_PUBLIC_FRONTEND_AUTH_PROJECT_ID with an auth flow project id. Then
+    To set up the SDK, update NEXT_PUBLIC_AUTH_PROJECT_ID with an auth flow project id. Then
     import the SDK within a useEffect hook.
 
     The InnerworksAuth class takes a redirectUri parameter as well as a project id. This redirect uri

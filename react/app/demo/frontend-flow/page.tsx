@@ -12,11 +12,11 @@ export default function FrontendFlowDemoPage() {
     const [authSuccess, setAuthSuccess] = useState<boolean>(false);
 
     /*
-    To set up the SDK, update NEXT_PUBLIC_FRONTEND_FLOW_PROJECT_ID with a frontend flow project id. Then
+    To set up the SDK, update NEXT_PUBLIC_PROJECT_ID with a frontend flow project id. Then
     import the SDK within a useEffect hook
     */
     useEffect(() => {
-        setInnerworksMetrics(new InnerworksMetrics(process.env.NEXT_PUBLIC_FRONTEND_FLOW_PROJECT_ID!, '#signin-button'));
+        setInnerworksMetrics(new InnerworksMetrics(process.env.NEXT_PUBLIC_PROJECT_ID!, '#signin-button'));
     }, [setInnerworksMetrics]);
 
     /*
