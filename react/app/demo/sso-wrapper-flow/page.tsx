@@ -2,18 +2,18 @@
 
 import Layout from '../layout';
 import { FormEvent, useEffect, useState } from 'react';
-import { InnerworksMetrics } from "@innerworks-me/iw-auth-sdk-dev";
+import { InnerworksMetrics } from "@innerworks-me/iw-auth-sdk";
 
 export default function SSOWrapperFlowDemoPage() {
     const [innerworksMetrics, setInnerworksMetrics] = useState<InnerworksMetrics>();
     const [authError, setAuthError] = useState<string | null>(null);
 
     /*
-    To set up the SDK, update NEXT_PUBLIC_FRONTEND_FLOW_PROJECT_ID with a frontend flow project id. Then
+    To set up the SDK, update NEXT_PUBLIC_PROJECT_ID with a frontend flow project id. Then
     import the SDK within a useEffect hook
     */
     useEffect(() => {
-        setInnerworksMetrics(new InnerworksMetrics(process.env.NEXT_PUBLIC_FRONTEND_FLOW_PROJECT_ID!, '#signin-button'));
+        setInnerworksMetrics(new InnerworksMetrics(process.env.NEXT_PUBLIC_PROJECT_ID!, '#signin-button'));
     }, [setInnerworksMetrics]);
 
     /*

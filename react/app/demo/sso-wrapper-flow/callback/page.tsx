@@ -3,7 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import Layout from '../../layout';
 import { useEffect, useState } from 'react';
-import { InnerworksMetrics } from '@innerworks-me/iw-auth-sdk-dev';
+import { InnerworksMetrics } from '@innerworks-me/iw-auth-sdk';
 
 export default function Callback() {
   const searchParams = useSearchParams();
@@ -15,11 +15,11 @@ export default function Callback() {
   const [authSuccess, setAuthSuccess] = useState<boolean>(false);
 
   /*
-  To set up the SDK, update NEXT_PUBLIC_FRONTEND_FLOW_PROJECT_ID with a frontend flow project id. Then
+  To set up the SDK, update NEXT_PUBLIC_PROJECT_ID with a frontend flow project id. Then
   import the SDK within a useEffect hook
   */
   useEffect(() => {
-    setInnerworksMetrics(new InnerworksMetrics(process.env.NEXT_PUBLIC_FRONTEND_FLOW_PROJECT_ID!));
+    setInnerworksMetrics(new InnerworksMetrics(process.env.NEXT_PUBLIC_PROJECT_ID!));
   }, [setInnerworksMetrics]);
 
   // Send innerworks metrics once SDK is initialized
