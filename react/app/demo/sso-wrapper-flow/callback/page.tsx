@@ -24,7 +24,9 @@ export default function Callback() {
 
   // Send innerworks metrics once SDK is initialized
   useEffect(() => {
-    sendInnerworksMetrics();
+    if(innerworksMetrics) {
+      sendInnerworksMetrics();
+    }
   }, [innerworksMetrics]);
 
   /*
