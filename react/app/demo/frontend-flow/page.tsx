@@ -77,15 +77,15 @@ export default function FrontendFlowDemoPage() {
     
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 text-black">
-            <h1 className="text-2xl font-bold mb-4">Frontend Flow Demo Page</h1>
+            <h1 className="text-2xl font-bold mb-4">Innerworks Sign In</h1>
             {authSuccess ? (
                 <p className="mb-8 text-green-500 text-center">Authentication Successful! User Metrics were sent to innerworks</p>
             ) : (
                 <div className="text-center">
                 <p className="mb-8 mx-64">
-                    This demonstrates the frontend flow, where a request sending the metrics is sent directly to innerworks 
-                    from the frontend. Add a frontend flow project id to the environment variables and use the username "test-username" and 
-                    password "password" to login.
+                    Please login below using a username and password. Please use the 
+                    username as human_name_device for example human_james_macbook. 
+                    Please also use the same password each time.
                 </p>
                 <div className="w-full max-w-xs mx-auto">
                     <form onSubmit={handleSubmit}>
