@@ -61,7 +61,7 @@ export default function FrontendFlowDemoPage() {
                 setAuthError("Innerworks SDK is not defined");
             }
         } else {
-            setAuthError("Username or Password Incorrect");
+            setAuthError("Please use a username in the form human_name_device");
         }
     };
 
@@ -69,9 +69,8 @@ export default function FrontendFlowDemoPage() {
     This function is a mocked version of your authentication process
     */
     function mockAuthenticator(username: string, password: string) : string | null {
-        if(username === "test-username" && password === "password") {
-            return "mock-user-id";
-        }
+        const regex = /^[a-zA-Z0-9]+_[a-zA-Z0-9]+_[a-zA-Z0-9]+$/;
+        if(regex.test(username)) return username;
         return null;
     }
     
