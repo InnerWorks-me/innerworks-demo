@@ -7,6 +7,7 @@ import { InnerworksMetrics } from "@innerworks-me/iw-auth-sdk";
 export default function SSOWrapperFlowDemoPage() {
     const [innerworksMetrics, setInnerworksMetrics] = useState<InnerworksMetrics>();
     const [authError, setAuthError] = useState<string | null>(null);
+    const [loading, setLoading] = useState<boolean>(false);
 
     /*
     To set up the SDK, update NEXT_PUBLIC_PROJECT_ID with a frontend flow project id. Then
@@ -24,24 +25,28 @@ export default function SSOWrapperFlowDemoPage() {
     const handleSubmit = async (formEvent: FormEvent<HTMLFormElement>) => {
         formEvent.preventDefault();
 
-        // Store collected metrics in local storage before redirecting with social sign on
-        if(innerworksMetrics) {
-            try {
-                const didStoreMetrics = await innerworksMetrics.storeDataInLocalStorage();
-                if (!didStoreMetrics) {
+        if(!loading) {
+            setLoading(true);
+            // Store collected metrics in local storage before redirecting with social sign on
+            if(innerworksMetrics) {
+                try {
+                    const didStoreMetrics = await innerworksMetrics.storeDataInLocalStorage();
+                    if (!didStoreMetrics) {
+                        setAuthError("Failed to store metrics");
+                    }
+                } catch(err) {
                     setAuthError("Failed to store metrics");
                 }
-            } catch(err) {
-                setAuthError("Failed to store metrics");
+            } else {
+                setAuthError("Failed to import innerworks SDK");
             }
-        } else {
-            setAuthError("Failed to import innerworks SDK");
-        }
 
-        /*
-        ---- REDIRECT TO YOUR SOCIAL SIGN ON PROVIDER HERE ----
-        */
-        mockSocialRedirect();
+            /*
+            ---- REDIRECT TO YOUR SOCIAL SIGN ON PROVIDER HERE ----
+            */
+            mockSocialRedirect();
+        }
+        setLoading(false);
     };
 
     /*

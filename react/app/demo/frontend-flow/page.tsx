@@ -10,6 +10,7 @@ export default function FrontendFlowDemoPage() {
     const [innerworksMetrics, setInnerworksMetrics] = useState<InnerworksMetrics>();
     const [authError, setAuthError] = useState<string | null>(null);
     const [authSuccess, setAuthSuccess] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
     /*
     To set up the SDK, update NEXT_PUBLIC_PROJECT_ID with a frontend flow project id. Then
@@ -27,41 +28,45 @@ export default function FrontendFlowDemoPage() {
     const handleSubmit = async (formEvent: FormEvent<HTMLFormElement>) => {
         formEvent.preventDefault();
         
-        // get details from form
-        const form = formEvent.target as HTMLFormElement;
-        const usernameInput = form.elements.namedItem('username') as HTMLInputElement;
-        const passwordInput = form.elements.namedItem('password') as HTMLInputElement;
+        if(!loading) {
+            setLoading(true);
+            // get details from form
+            const form = formEvent.target as HTMLFormElement;
+            const usernameInput = form.elements.namedItem('username') as HTMLInputElement;
+            const passwordInput = form.elements.namedItem('password') as HTMLInputElement;
 
-        /*
-        ---- PERFORM YOUR AUTHENTICATION HERE ----
-        */
-        const id = mockAuthenticator(usernameInput.value, passwordInput.value);
-        const isAuthSuccessful : boolean = id != null;
+            /*
+            ---- PERFORM YOUR AUTHENTICATION HERE ----
+            */
+            const id = mockAuthenticator(usernameInput.value, passwordInput.value);
+            const isAuthSuccessful : boolean = id != null;
 
-        /*
-        On authentication success, send metrics to innerworks. Make sure to first assert
-        the SDKs presence. The innerworksMetrics.send() function will return a boolean
-        determining its success rather than throwing an error so as not to disrupt 
-        the normal workings of your website if there is a failure.
-        */
-        if(isAuthSuccessful) {
-            setAuthError(null);
-            if(innerworksMetrics) {
-                const metricsSendSuccess = await innerworksMetrics.send(id!);
-                if(metricsSendSuccess) {
-                    setAuthSuccess(true);
+            /*
+            On authentication success, send metrics to innerworks. Make sure to first assert
+            the SDKs presence. The innerworksMetrics.send() function will return a boolean
+            determining its success rather than throwing an error so as not to disrupt 
+            the normal workings of your website if there is a failure.
+            */
+            if(isAuthSuccessful) {
+                setAuthError(null);
+                if(innerworksMetrics) {
+                    const metricsSendSuccess = await innerworksMetrics.send(id!);
+                    if(metricsSendSuccess) {
+                        setAuthSuccess(true);
+                    } else {
+                        /* 
+                        Here we display an error, but you don't have to! You may want to just 
+                        log that it has failed and let things proceed as normal
+                        */
+                        setAuthError("Error when sending innerworks metrics");
+                    }
                 } else {
-                    /* 
-                    Here we display an error, but you don't have to! You may want to just 
-                    log that it has failed and let things proceed as normal
-                    */
-                    setAuthError("Error when sending innerworks metrics");
+                    setAuthError("Innerworks SDK is not defined");
                 }
             } else {
-                setAuthError("Innerworks SDK is not defined");
+                setAuthError("Username or Password Incorrect");
             }
-        } else {
-            setAuthError("Username or Password Incorrect");
+            setLoading(false);
         }
     };
 

@@ -15,6 +15,7 @@ export class FrontendFlowDemoPageComponent implements AfterViewInit {
   authError: string | null = null;
   authSuccess: boolean = false;
   loginForm: FormGroup;
+  loading: boolean = false;
 
   constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
@@ -31,6 +32,7 @@ export class FrontendFlowDemoPageComponent implements AfterViewInit {
 
   async handleSubmit() {
     if (this.loginForm.valid) {
+      this.loading = true;
       const username = this.loginForm.get('username')?.value;
       const password = this.loginForm.get('password')?.value;
 
@@ -51,6 +53,7 @@ export class FrontendFlowDemoPageComponent implements AfterViewInit {
       } else {
         this.authError = "Username or Password Incorrect";
       }
+      this.loading = false;
     }
   }
 
