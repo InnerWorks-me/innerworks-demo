@@ -13,6 +13,7 @@ export default function FrontendFlowDemoPage() {
     const [authError, setAuthError] = useState<string | null>(null);
     const [authSuccess, setAuthSuccess] = useState<boolean>(false);
     const [buttonPosition, setButtonPosition] = useState<ButtonPosition>('bottom-right');
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         setInnerworksMetrics(new InnerworksMetrics(process.env.NEXT_PUBLIC_PROJECT_ID!, '#signin-button'));
@@ -27,27 +28,31 @@ export default function FrontendFlowDemoPage() {
     const handleSubmit = async (formEvent: FormEvent<HTMLFormElement>) => {
         formEvent.preventDefault();
         
-        const form = formEvent.target as HTMLFormElement;
-        const usernameInput = form.elements.namedItem('username') as HTMLInputElement;
-        const passwordInput = form.elements.namedItem('password') as HTMLInputElement;
+        if(!loading) {
+            setLoading(true);
+            const form = formEvent.target as HTMLFormElement;
+            const usernameInput = form.elements.namedItem('username') as HTMLInputElement;
+            const passwordInput = form.elements.namedItem('password') as HTMLInputElement;
 
-        const id = mockAuthenticator(usernameInput.value, passwordInput.value);
-        const isAuthSuccessful: boolean = id != null;
+            const id = mockAuthenticator(usernameInput.value, passwordInput.value);
+            const isAuthSuccessful: boolean = id != null;
 
-        if (isAuthSuccessful) {
-            setAuthError(null);
-            if (innerworksMetrics) {
-                const metricsSendSuccess = await innerworksMetrics.send(id!);
-                if (metricsSendSuccess) {
-                    setAuthSuccess(true);
+            if (isAuthSuccessful) {
+                setAuthError(null);
+                if (innerworksMetrics) {
+                    const metricsSendSuccess = await innerworksMetrics.send(id!);
+                    if (metricsSendSuccess) {
+                        setAuthSuccess(true);
+                    } else {
+                        setAuthError("Error when sending innerworks metrics");
+                    }
                 } else {
-                    setAuthError("Error when sending innerworks metrics");
+                    setAuthError("Username or Password Incorrect");
                 }
             } else {
-                setAuthError("Innerworks SDK is not defined");
+                setAuthError("Please use a username in the form human_name_device");
             }
-        } else {
-            setAuthError("Please use a username in the form human_name_device");
+            setLoading(false);
         }
     };
 
